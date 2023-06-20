@@ -39,7 +39,7 @@ extension SwiftGenPlugin: XcodeBuildToolPlugin {
     let fileManager = FileManager.default
 
     // Possible paths where there may be a config file (root of package, target dir.)
-    let configurations: [Path] = [context.xcodeProject.directory]
+    let configurations: [Path] = [context.xcodeProject.directory, context.xcodeProject.directory.appending(target.displayName)]
       .map { $0.appending("swiftgen.yml") }
       .filter { fileManager.fileExists(atPath: $0.string) }
 
